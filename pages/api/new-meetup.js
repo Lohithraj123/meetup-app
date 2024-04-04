@@ -1,9 +1,8 @@
-import { MongoClient } from 'mongodb';
-
 // /api/new-meetup
-// POST /api/new-meetup
+import { MongoClient } from 'mongodb';
+import React from 'react';
 
-async function handler(req, res) {
+const handler = async (req, res) => {
   if (req.method === 'POST') {
     const data = req.body;
 
@@ -13,15 +12,14 @@ async function handler(req, res) {
     const db = client.db();
 
     const meetupsCollection = db.collection('meetups');
-
-    const result = await meetupsCollection.insertOne(data);
+    const result = await meetupsCollection.insertOne({ data });
 
     console.log(result);
 
-    client.close();
+    client.close()
 
-    res.status(201).json({ message: 'Meetup inserted!' });
+    res.status(201).json({message: 'Meet Up'})
   }
-}
+};
 
 export default handler;
