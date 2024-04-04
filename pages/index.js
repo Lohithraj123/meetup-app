@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google';
 import MeetupList from '@/components/meetups/MeetupList';
-
+import Head from 'next/head';
 const inter = Inter({ subsets: ['latin'] });
 
 const DUMMY_MEETUPS = [
@@ -23,9 +23,12 @@ const DUMMY_MEETUPS = [
 ];
 
 export default function Home(props) {
-
   return (
     <>
+      <Head>
+        <title>Meet Up Page</title>
+        <meta name="description" content="A new meetup page app" />
+      </Head>
       <MeetupList meetups={props.meetups} />
     </>
   );
@@ -34,8 +37,8 @@ export default function Home(props) {
 export function getStaticProps() {
   return {
     props: {
-      meetups: DUMMY_MEETUPS
+      meetups: DUMMY_MEETUPS,
     },
-    revalidate: 10
-  }
+    revalidate: 10,
+  };
 }
